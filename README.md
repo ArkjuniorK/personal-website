@@ -1,11 +1,17 @@
-# React + TypeScript + Vite
+# Personal Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interactive terminal-like website as my personal web. Heavily inspired by [Aurora](https://github.com/flick0/dotfiles) by [flick0](https://github.com/flick0).
+This website is built on top of React and TailwindCSS. Terminal using Xterm.js and run as client only without a backend.
+Commands can be found at `/src/commands` directory.
 
-Currently, two official plugins are available:
+Tech:
+- Bun
+- Vite
+- React
+- Xterm.js
+- Typescript
+- TailwindCSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 ## Expanding the ESLint configuration
 
