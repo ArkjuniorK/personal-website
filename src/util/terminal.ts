@@ -13,11 +13,12 @@ function runTerminalCommand(term: Terminal, text: string) {
     const cmd = commands[command];
     if (!cmd) {
       term.writeln(`${command}: command not found`);
+      promptTerminal(term);
       return;
     }
 
-    promptTerminal(term);
+    cmd.func(term);
   }
 }
 
-export { promptTerminal, runTerminalCommand }
+export { promptTerminal, runTerminalCommand };
