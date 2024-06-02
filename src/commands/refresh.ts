@@ -1,7 +1,7 @@
 import { Terminal } from "@xterm/xterm";
-import { IComand } from "./interface";
+import { ICommand } from "./interface";
 
-const refresh: IComand = {
+const refresh: ICommand = {
   name: "refresh",
   desc: "Reload this page",
   contents: [],

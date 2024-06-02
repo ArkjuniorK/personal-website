@@ -1,8 +1,8 @@
 import { Terminal } from "@xterm/xterm";
-import { IComand } from "./interface";
+import { ICommand } from "./interface";
 import { promptTerminal } from "../util/terminal";
 
-const greet: IComand = {
+const greet: ICommand = {
   name: "greet",
   desc: "Print greet message",
   contents: [

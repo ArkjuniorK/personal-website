@@ -1,8 +1,8 @@
 import { Terminal } from "@xterm/xterm";
 import { promptTerminal } from "../util/terminal";
-import { IComand } from "./interface";
+import { ICommand } from "./interface";
 
-const clear: IComand = {
+const clear: ICommand = {
   name: "clear",
   desc: "Clear terminal buffers",
   contents: [],
