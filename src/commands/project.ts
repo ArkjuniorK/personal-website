@@ -2,14 +2,14 @@ import { Terminal } from "@xterm/xterm";
 import { ICommand } from "./interface";
 import { promptTerminal } from "../util/terminal";
 
-const expr: ICommand = {
-  name: "expr",
-  desc: "Working experience",
+const project: ICommand = {
+  name: "project",
+  desc: "Recent projects",
   contents: [],
   func: (term: Terminal) => {
-    term.writeln(expr.contents.join("\r\n"));
+    term.writeln(project.contents.join("\r\n"));
     promptTerminal(term);
   },
 };
 
-export default expr;
+export default project;
