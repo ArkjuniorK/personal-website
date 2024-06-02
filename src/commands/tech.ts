@@ -23,13 +23,9 @@ const tech: ICommand = {
     "  ---------",
     "  MongoDB, PostgreSQL, MySQL, Redis",
     "",
-    "  \x1b[1mCI/CD:\x1b[0m",
-    "  ------",
-    "  Docker, Gitlab Runner, Github Action",
-    "",
     "  \x1b[1mOther:\x1b[0m",
     "  ------",
-    "  Socket.io, GNU/Linux",
+    "  Socket.io, GNU/Linux, Docker, Gitlab Runner, Github Action",
   ],
   func: (term: Terminal) => {
     term.writeln(tech.contents.join("\r\n"));
