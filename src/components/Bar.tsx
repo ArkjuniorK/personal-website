@@ -1,6 +1,6 @@
 function Bar() {
   return (
-    <section className="z-10  w-full relative text-white/90 animate__animated animate__slideInDown">
+    <section className="z-20  w-full relative text-white/90 animate__animated animate__slideInDown">
       <div className="bg-dark py-1 px-2 flex justify-between content-center">
         <button
           type="button"
