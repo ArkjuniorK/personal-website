@@ -88,7 +88,7 @@ function TerminalWindow() {
 
   return (
     <section className="relative w-full lg:w-2/3 xl:w-2/5 h-full lg:h-3/6 xl:h-1/2 p-2 z-20 lg:mx-auto lg:my-auto transition-all ease-in-out duration-500">
-      <div className="bg-dark relative h-full w-full  ring-2 ring-white/60 text-black dark:text-white p-3 animate__animated animate__fadeInDown animate__delay-1s">
+      <div className="bg-dark relative h-full w-full rounded-2xl  ring-2 ring-white/60 text-black dark:text-white p-3 animate__animated animate__fadeInDown animate__delay-1s">
         <div ref={termRef} className="w-full h-full text-black"></div>
       </div>
     </section>
