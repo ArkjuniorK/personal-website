@@ -1,12 +1,12 @@
 import help from "./help";
+import expr from "./expr";
+import tech from "./tech";
+import about from "./about";
 import greet from "./greet";
 import clear from "./clear";
+import project from "./project";
 import refresh from "./refresh";
-import { IComand } from "./interface";
+import { ICommands } from "./interface";
 
-interface ICommands {
-  [index: string]: IComand;
-}
-
-const commands: ICommands = { help, greet, clear, refresh };
+const commands: ICommands = { help, expr, tech, about, greet, clear, project, refresh };
 export default commands;
