@@ -3,18 +3,17 @@ import { ICommand } from "./interface";
 import { promptTerminal } from "../util/terminal";
 
 import expr from "./expr";
+import tech from "./tech";
 import greet from "./greet";
 import clear from "./clear";
 import about from "./about";
-import project from "./project";
 import refresh from "./refresh";
-import tech from "./tech";
 
 const help: ICommand = {
   name: "help",
   desc: "Display list of available commands",
   contents: [
-    "Interactive Portfolio Website v1.0",
+    "Interactive Porsonal Website v1.0",
     "",
     "\x1b[32mUsage :\x1b[0m",
     "",
@@ -24,7 +23,6 @@ const help: ICommand = {
     "    \x1b[32m" + about.name + "\x1b[0m\t" + about.desc,
     "    \x1b[32m" + greet.name + "\x1b[0m\t" + greet.desc,
     "    \x1b[32m" + clear.name + "\x1b[0m\t" + clear.desc,
-    "    \x1b[32m" + project.name + "\x1b[0m\t" + project.desc,
     "    \x1b[32m" + refresh.name + "\x1b[0m\t" + refresh.desc,
   ],
   func: (term: Terminal) => {
