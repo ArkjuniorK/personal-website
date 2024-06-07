@@ -109,11 +109,8 @@ function Term(props: any) {
     >
       <div className="bg-dark relative h-full w-full rounded-2xl ring-4 ring-white/80 text-black dark:text-white animate__animated animate__zoomIn animate__delay-1s">
         <div className="bg-dark absolute z-10 w-full rounded-t-xl lg:flex px-3 py-2 space-x-2 justify-start sm:hidden">
-          <button className="bg-red-400 p-2 rounded-full" disabled></button>
-          <button
-            className="bg-yellow-400 p-2 rounded-full"
-            disabled
-          ></button>
+          <button className="bg-red-500 p-2 rounded-full" disabled></button>
+          <button className="bg-yellow-500 p-2 rounded-full" disabled></button>
           <button
             onClick={() => setMaximize((v) => !v)}
             className="bg-green-400 p-2 rounded-full"

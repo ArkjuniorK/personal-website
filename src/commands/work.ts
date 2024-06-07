@@ -5,7 +5,7 @@ import { promptTerminal } from "../util/terminal";
 const work: ICommand = {
   name: "work",
   desc: "Projects from previous role",
-  contents: [],
+  contents: ["Not available yet, kindly wait!"],
   func: (term: Terminal) => {
     term.writeln(work.contents.join("\r\n"));
     promptTerminal(term);
