@@ -41,7 +41,7 @@ function Term(props: any) {
   useEffect(() => {
     terminal = new Terminal({
       theme: theme,
-      fontSize: 13,
+      fontSize: 12,
       fontFamily: "IBM Plex Mono, monospace",
       cursorBlink: true,
       allowProposedApi: true,
@@ -108,7 +108,7 @@ function Term(props: any) {
       className={`relative w-full h-full ${maximize ? "" : "lg:w-2/3 xl:w-2/3 lg:h-3/6 xl:h-2/3"} p-2 z-20 lg:mx-auto lg:my-auto transition-all ease-in-out duration-500`}
     >
       <div className="bg-dark relative h-full w-full rounded-2xl ring-4 ring-white/80 text-black dark:text-white animate__animated animate__zoomIn animate__delay-1s">
-        <div className="bg-dark absolute z-10 w-full rounded-t-xl lg:flex px-3 py-2 space-x-2 justify-start sm:hidden">
+        <div className="bg-dark absolute z-10 w-full rounded-t-xl hidden lg:flex px-3 py-2 space-x-2 justify-start ">
           <button className="bg-red-500 p-2 rounded-full" disabled />
           <button className="bg-yellow-500 p-2 rounded-full" disabled />
           <button
@@ -116,7 +116,7 @@ function Term(props: any) {
             className="bg-green-400 p-2 rounded-full"
           ></button>
         </div>
-        <div className="px-3 pb-3 py-7 w-full h-full relative">
+        <div className="px-3 pb-3 pt-3 md:pt-7 w-full h-full relative">
           <div id="terminal" ref={termRef} className="relative w-full h-full"></div>
         </div>
       </div>
