@@ -14,7 +14,7 @@ function Bar() {
           </button>
         </div>
         <div className="md:flex-1 flex justify-start md:justify-center">
-          <a target="_blank" href="/resume.pdf">
+          <a target="_blank" href={window.location + "resume.pdf"}>
             <button
               type="button"
               className="hover:backdrop-blur-xl bg-dark rounded-2xl py-0 px-3 hover:bg-black/20 hover:text-dark"
