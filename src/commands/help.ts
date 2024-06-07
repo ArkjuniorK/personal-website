@@ -2,6 +2,7 @@ import { Terminal } from "@xterm/xterm";
 import { ICommand } from "./interface";
 import { promptTerminal } from "../util/terminal";
 
+import work from "./work";
 import expr from "./expr";
 import tech from "./tech";
 import greet from "./greet";
@@ -20,6 +21,7 @@ const help: ICommand = {
     "    \x1b[32mhelp\x1b[0m\tDisplay this help screen",
     "    \x1b[32m" + expr.name + "\x1b[0m\t" + expr.desc,
     "    \x1b[32m" + tech.name + "\x1b[0m\t" + tech.desc,
+    "    \x1b[32m" + work.name + "\x1b[0m\t" + work.desc,
     "    \x1b[32m" + about.name + "\x1b[0m\t" + about.desc,
     "    \x1b[32m" + greet.name + "\x1b[0m\t" + greet.desc,
     "    \x1b[32m" + clear.name + "\x1b[0m\t" + clear.desc,
