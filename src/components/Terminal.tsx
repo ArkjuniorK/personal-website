@@ -5,14 +5,18 @@ import { FitAddon } from "@xterm/addon-fit";
 import commands from "../commands";
 import "@xterm/xterm/css/xterm.css";
 
+type TProps = {
+    isOpen: boolean
+}
+
 const theme: ITheme = {
-  red: "#f7768e",
-  blue: "#7aa2f7",
-  cyan: "#7dcfff",
-  green: "#9ece6a",
-  yellow: "#e0af68",
-  magenta: "#bb9af7",
-  background: "rgb(0, 0, 0, 0)",
+    red: "#f7768e",
+    blue: "#7aa2f7",
+    cyan: "#7dcfff",
+    green: "#9ece6a",
+    yellow: "#e0af68",
+    magenta: "#bb9af7",
+    background: "rgb(0, 0, 0, 0)",
 };
 
 // These variables would be initialize when component
@@ -29,107 +33,122 @@ let fitAddon: FitAddon;
 // the fitAddon to match the current size of container.
 // This way we doesn't need to use React useEffect
 const resizeObs = new ResizeObserver(function () {
-  fitAddon && fitAddon.fit();
+    fitAddon && fitAddon.fit();
 });
 
-function Term(props: any) {
-  const termRef = useRef(null);
-  const [maximize, setMaximize] = useState(false);
 
-  // Init the terminal, addon, and their
-  // event when component is mount.
-  useEffect(() => {
-    terminal = new Terminal({
-      theme: theme,
-      fontSize: 12,
-      fontFamily: "IBM Plex Mono, monospace",
-      cursorBlink: true,
-      allowProposedApi: true,
-      allowTransparency: true,
-      scrollOnUserInput: true,
-    });
+function Term(props: TProps) {
+    const termRef = useRef(null);
+    const [maximize, setMaximize] = useState(false);
 
-    fitAddon = new FitAddon();
+    // Init the terminal, addon, and their
+    // event when component is mount.
+    useEffect(() => {
+        terminal = new Terminal({
+            theme: theme,
+            fontSize: 12,
+            fontFamily: "IBM Plex Mono, monospace",
+            cursorBlink: true,
+            allowProposedApi: true,
+            allowTransparency: true,
+            scrollOnUserInput: true,
+        });
 
-    terminal.loadAddon(fitAddon);
-    terminal.open(termRef.current as any);
-    resizeObs.observe(termRef.current as any);
+        fitAddon = new FitAddon();
 
-    commands.greet.func(terminal);
+        terminal.loadAddon(fitAddon);
+        terminal.open(termRef.current as any);
+        resizeObs.observe(termRef.current as any);
 
-    terminal.onData((e) => {
-      switch (e) {
-        // Ctrl+C
-        case "\u0003":
-          terminal.write("^C");
-          promptTerminal(terminal);
-          break;
+        commands.greet.func(terminal);
 
-        // Enter
-        case "\r":
-          runTerminalCommand(terminal, command);
-          command = "";
-          break;
+        terminal.onData((e) => {
+            switch (e) {
+                // Ctrl+C
+                case "\u0003":
+                    terminal.write("^C");
+                    promptTerminal(terminal);
+                    break;
 
-        // Backspace (DEL)
-        // Do not delete the prompt
-        case "\u007F":
-          terminal.onWriteParsed;
+                // Enter
+                case "\r":
+                    runTerminalCommand(terminal, command);
+                    command = "";
+                    break;
 
-          if (terminal._core.buffer.x > 2) {
-            terminal.write("\b \b");
-            if (command.length > 0) {
-              command = command.slice(0, command.length - 1);
+                // Backspace (DEL)
+                // Do not delete the prompt
+                case "\u007F":
+                    terminal.onWriteParsed;
+
+                    if (terminal._core.buffer.x > 2) {
+                        terminal.write("\b \b");
+                        if (command.length > 0) {
+                            command = command.slice(0, command.length - 1);
+                        }
+                    }
+
+                    break;
+
+                // Print all other characters for demo
+                default:
+                    if (
+                        (e >= String.fromCharCode(0x0061) &&
+                            e <= String.fromCharCode(0x007a)) ||
+                        e >= "\u00a0"
+                    ) {
+                        command += e;
+                        terminal.write(e);
+                    }
             }
-          }
+        });
 
-          break;
+        return () => {
+            terminal.dispose();
+            fitAddon.dispose();
+        };
+    }, []);
 
-        // Print all other characters for demo
-        default:
-          if (
-            (e >= String.fromCharCode(0x0061) && e <= String.fromCharCode(0x007a)) ||
-            e >= "\u00a0"
-          ) {
-            command += e;
-            terminal.write(e);
-          }
-      }
-    });
-
-    return () => {
-      terminal.dispose();
-      fitAddon.dispose();
-    };
-  }, []);
-
-  return props.isOpen ? (
-    <section
-      className={`relative w-full h-full ${maximize ? "" : "lg:w-2/3 xl:w-2/3 lg:h-3/6 xl:h-2/3"} p-2 z-20 lg:mx-auto lg:my-auto transition-all ease-in-out duration-500`}
-    >
-      <div className="bg-dark relative h-full w-full rounded-2xl ring-4 ring-white/80 text-black dark:text-white animate__animated animate__zoomIn animate__delay-1s">
-        <div className="bg-dark absolute z-10 w-full rounded-t-xl hidden lg:flex px-3 py-2 space-x-2 justify-start ">
-          <button className="bg-red-500 p-2 rounded-full" disabled />
-          <button className="bg-yellow-500 p-2 rounded-full" disabled />
-          <button
-            onClick={() => setMaximize((v) => !v)}
-            className="bg-green-400 p-2 rounded-full"
-          ></button>
-        </div>
-        <div className="px-3 pb-3 pt-3 md:pt-7 w-full h-full relative">
-          <div id="terminal" ref={termRef} className="relative w-full h-full"></div>
-        </div>
-      </div>
-    </section>
-  ) : null;
+    return props.isOpen ? (
+        <section
+            className={`relative w-full h-full ${maximize ? "" : "lg:w-2/3 xl:w-2/3 lg:h-3/6 xl:h-2/3"} p-2 z-20 lg:mx-auto lg:my-auto transition-all ease-in-out duration-500`}
+        >
+            <div className="relative h-full w-full ring-1 ring-white/80 text-black dark:text-white animate__animated animate__zoomIn animate__delay-1s">
+                <div className="absolute z-10 w-full hidden lg:flex px-3 py-3 space-x-2 justify-start ">
+                    <button
+                        type="button"
+                        className="bg-white p-1 rounded-full"
+                        disabled
+                    />
+                    <button
+                        type="button"
+                        className="bg-white p-1 rounded-full"
+                        disabled
+                    />
+                    <button
+                        type="button"
+                        onClick={() => setMaximize((v) => !v)}
+                        className="bg-white hover:bg-green-500 p-1 rounded-full"
+                    ></button>
+                </div>
+                <div className="px-3 pb-3 pt-3 md:pt-7 w-full h-full relative">
+                    <div
+                        id="terminal"
+                        ref={termRef}
+                        className="relative w-full h-full"
+                    ></div>
+                </div>
+            </div>
+        </section>
+    ) : null;
 }
 
 function TerminalWindow() {
-  return (
-    <div className="h-full w-full relative flex">
-      <Term isOpen={true} />
-    </div>
-  );
+    return (
+        <div className="h-full w-full relative flex">
+            <Term isOpen={true} />
+        </div>
+    );
 }
 
 export default TerminalWindow;
